@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour
     private bool isJumpPressed;
     public float jumpForce;
 
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    bool isGrounded;
+    Vector3 velocity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +26,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         Move();
     }
-
-    //void FixedUpdate()
-    //{
-    //    if (isJumpPressed)
-    //    {
-    //        // the cube is going to move upwards in 10 units per second
-    //        rb.velocity = new Vector3(0, 10, 0);
-    //        //isMoving = true;
-    //        Debug.Log("jump");
-    //    }
-    //}
 
     private void Move()
     {
@@ -47,19 +43,15 @@ public class PlayerController : MonoBehaviour
         i_movement = value.Get<Vector2>();
     }
 
-
     private void OnMoveUp()
     {
-
         Debug.Log("Moving up");
-        //transform.Translate(transform.up);
-        //if (isJumpPressed)
-        //{
-            // the cube is going to move upwards in 10 units per second
+        
+        if (isGrounded)
+        {
             rb.velocity = new Vector3(0, jumpForce, 0);
-            //isMoving = true;
             Debug.Log("jump");
-        //}
+        }
     }
 
     private void OnMoveDown()
