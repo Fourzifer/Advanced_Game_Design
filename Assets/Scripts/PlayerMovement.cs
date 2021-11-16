@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     bool isJumpPressed;
     public float jumpForce;
+    public float WallClimbForce;
 
     bool isGrounded;
 
@@ -92,7 +93,17 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+        if(OnWall == false)
+        {
 
+
+
+            rb.mass = 1;
+
+
+
+
+        }
 
     }
 
@@ -147,8 +158,9 @@ public class PlayerMovement : MonoBehaviour
         if (OnWall)
         {
 
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
-            Debug.Log("jump");
+            rb.mass = 0.1f;
+            rb.velocity = new Vector3(rb.velocity.x, WallClimbForce, 0);
+            Debug.Log("Wall Climb");
             isJumpPressed = true;
 
 
