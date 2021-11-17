@@ -12,10 +12,18 @@ public class PlayerMovement : MonoBehaviour
     bool isJumpPressed;
     public float jumpForce;
     public float WallClimbForce;
+    public float Runspeed;
+
+    bool DashPressed;
+    bool LeftDashPressed;
+    bool MoveLeft;
+    bool MoveRight;
 
     bool isGrounded;
 
     bool OnWall;
+
+    
 
     [SerializeField]
     Transform groundCheck;
@@ -105,6 +113,9 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+
+
+
     }
 
 
@@ -136,8 +147,10 @@ public class PlayerMovement : MonoBehaviour
 
      void OnMove(InputValue value)
     {
-        Debug.Log("Moving");
+        
         i_movement = value.Get<Vector2>();
+
+        
     }
 
 
@@ -171,19 +184,75 @@ public class PlayerMovement : MonoBehaviour
 
      void OnMoveDown()
     {
-        Debug.Log("Moving down");
-        transform.Translate(-transform.up);
+        DashPressed = true;
+        Dash();
+
     }
 
 
-    void Walljump()
+    void Dash()
     {
 
+        if(DashPressed == true)
+        {
+
+            StartCoroutine(DashDuration());
 
 
+        }
+
+
+        if (LeftDashPressed == true)
+        {
+
+            StartCoroutine(LeftDashDuration());
+
+
+        }
+
+
+        if (DashPressed == false)
+        {
+
+            StopCoroutine(DashDuration());
+            Physics.IgnoreLayerCollision(3, 6,false);
+
+        }
+
+
+        if (LeftDashPressed == true)
+        {
+
+            StopCoroutine(LeftDashDuration());
+            Physics.IgnoreLayerCollision(3, 6, false);
+
+        }
 
     }
 
+
+    IEnumerator DashDuration() 
+    {
+        Debug.Log("Right Dash");
+        yield return new WaitForSeconds(0.1f);
+        Physics.IgnoreLayerCollision(3, 6);
+        rb.velocity = new Vector3(-12, rb.velocity.y, 0);
+        DashPressed = false;
+        yield break;
+
+    }
+
+
+    IEnumerator LeftDashDuration()
+    {
+        Debug.Log("Left Dash");
+        yield return new WaitForSeconds(0.1f);
+        Physics.IgnoreLayerCollision(3, 6);
+        rb.velocity = new Vector3(-12, rb.velocity.y, 0);
+        LeftDashPressed = false;
+        yield break;
+
+    }
 
 
 
