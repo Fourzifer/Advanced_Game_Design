@@ -12,8 +12,12 @@ public class PlayerMovement : MonoBehaviour
     bool isJumpPressed;
     public float jumpForce;
     public float WallClimbForce;
+    public float Runspeed;
 
     bool DashPressed;
+    bool LeftDashPressed;
+    bool MoveLeft;
+    bool MoveRight;
 
     bool isGrounded;
 
@@ -109,6 +113,9 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+
+
+
     }
 
 
@@ -140,8 +147,10 @@ public class PlayerMovement : MonoBehaviour
 
      void OnMove(InputValue value)
     {
-        Debug.Log("Moving");
+        
         i_movement = value.Get<Vector2>();
+
+        
     }
 
 
@@ -175,8 +184,9 @@ public class PlayerMovement : MonoBehaviour
 
      void OnMoveDown()
     {
-        Debug.Log("Moving down");
-        transform.Translate(-transform.up);
+        DashPressed = true;
+        Dash();
+
     }
 
 
@@ -192,6 +202,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+        if (LeftDashPressed == true)
+        {
+
+            StartCoroutine(LeftDashDuration());
+
+
+        }
+
+
         if (DashPressed == false)
         {
 
@@ -201,18 +220,40 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+        if (LeftDashPressed == true)
+        {
+
+            StopCoroutine(LeftDashDuration());
+            Physics.IgnoreLayerCollision(3, 6, false);
+
+        }
+
     }
 
 
     IEnumerator DashDuration() 
     {
-
-        yield return new WaitForSeconds(5f);
+        Debug.Log("Right Dash");
+        yield return new WaitForSeconds(0.1f);
         Physics.IgnoreLayerCollision(3, 6);
-        rb.velocity = new Vector3(6, rb.velocity.y, 0);
+        rb.velocity = new Vector3(-12, rb.velocity.y, 0);
         DashPressed = false;
         yield break;
 
     }
+
+
+    IEnumerator LeftDashDuration()
+    {
+        Debug.Log("Left Dash");
+        yield return new WaitForSeconds(0.1f);
+        Physics.IgnoreLayerCollision(3, 6);
+        rb.velocity = new Vector3(-12, rb.velocity.y, 0);
+        LeftDashPressed = false;
+        yield break;
+
+    }
+
+
 
 }
