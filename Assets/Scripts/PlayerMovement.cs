@@ -13,9 +13,13 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float WallClimbForce;
 
+    bool DashPressed;
+
     bool isGrounded;
 
     bool OnWall;
+
+    
 
     [SerializeField]
     Transform groundCheck;
@@ -176,15 +180,39 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void Walljump()
+    void Dash()
     {
 
+        if(DashPressed == true)
+        {
 
+            StartCoroutine(DashDuration());
+
+
+        }
+
+
+        if (DashPressed == false)
+        {
+
+            StopCoroutine(DashDuration());
+            Physics.IgnoreLayerCollision(3, 6,false);
+
+        }
 
 
     }
 
 
+    IEnumerator DashDuration() 
+    {
 
+        yield return new WaitForSeconds(5f);
+        Physics.IgnoreLayerCollision(3, 6);
+        rb.velocity = new Vector3(6, rb.velocity.y, 0);
+        DashPressed = false;
+        yield break;
+
+    }
 
 }
