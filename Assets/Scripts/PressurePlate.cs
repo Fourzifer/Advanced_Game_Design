@@ -7,8 +7,16 @@ public class PressurePlate : MonoBehaviour
     private bool switchIsActive;
     [SerializeField] private GameObject door;
     [SerializeField] private int switchType;
-    //public static GameObject switchA;
-    //public static GameObject switchB;
+    public static int totalPlayers = 0;
+
+    private void Update()
+    {
+        //(a known "bug" is that two players could stand on the same pressure plate)
+        if (totalPlayers == 2 && switchType == 3 && door != null)
+        {
+            door.SetActive(false);
+        }
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -18,20 +26,15 @@ public class PressurePlate : MonoBehaviour
             {
                 case 1:
                     switchIsActive = true;
-                    Debug.Log("Opened");
                     door.SetActive(false);
                     return;
                 case 2:
                     switchIsActive = true;
-                    Debug.Log("Door destroyed");
-                    Destroy(door);
+                    door.SetActive(false);
                     return;
-                //case 3:
-                //    if (switchA && switchB)
-                //    {
-                //        Debug.Log("Door destroyed");
-                //        Destroy(door);
-                //    }
+                case 3:
+                    totalPlayers++;
+                    Debug.Log(totalPlayers);
                     return;
                 default:
                     return;
@@ -41,11 +44,23 @@ public class PressurePlate : MonoBehaviour
 
     void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.tag == "Player" && door != null)
+        switch (switchType)
         {
-            switchIsActive = false;
-            Debug.Log("Closed");
-            door.SetActive(true);
+            case 1:
+                if (other.gameObject.tag == "Player" && door != null)
+                {
+                    switchIsActive = false;
+                    door.SetActive(true);
+                }
+                return;
+            case 2:
+                return;
+            case 3:
+                totalPlayers--;
+                Debug.Log(totalPlayers);
+                return;
+            default:
+                return;
         }
     }
 }
