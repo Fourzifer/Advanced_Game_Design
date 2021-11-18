@@ -236,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Right Dash");
         yield return new WaitForSeconds(0.1f);
         Physics.IgnoreLayerCollision(3, 6);
-        rb.velocity = new Vector3(-12, rb.velocity.y, 0);
+        rb.velocity = new Vector3(12, rb.velocity.y, 0);
         DashPressed = false;
         yield break;
 
