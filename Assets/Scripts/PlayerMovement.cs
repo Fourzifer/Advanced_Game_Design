@@ -47,9 +47,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
-        Gizmos.DrawLine(transform.position, LWallCheck.position);
-        Gizmos.DrawLine(transform.position, RWallCheck.position);
-
     }
 
 
