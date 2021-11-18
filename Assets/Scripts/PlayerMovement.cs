@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float WallClimbForce;
     public float Runspeed;
 
+    public bool HaveWallClimb = false;
+    public bool HaveDash = false;
+
     bool DashPressed;
     bool LeftDashPressed;
     bool MoveLeft;
@@ -168,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (OnWall)
+        if (OnWall && HaveWallClimb == true)
         {
 
             rb.mass = 0.1f;
@@ -193,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
     void Dash()
     {
 
-        if(DashPressed == true)
+        if(DashPressed == true && HaveDash == true)
         {
 
             StartCoroutine(DashDuration());
@@ -202,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (LeftDashPressed == true)
+        if (LeftDashPressed == true && HaveDash == true)
         {
 
             StartCoroutine(LeftDashDuration());
