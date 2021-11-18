@@ -8,6 +8,7 @@ public class PressurePlate : MonoBehaviour
     [SerializeField] private GameObject door;
     [SerializeField] private int switchType;
     public static int totalPlayers = 0;
+    public static int totalPlayersBlue = 0;
 
     private void Update()
     {
@@ -27,6 +28,8 @@ public class PressurePlate : MonoBehaviour
                 case 1:
                     switchIsActive = true;
                     door.SetActive(false);
+                    totalPlayersBlue++;
+                    Debug.Log("Blue switch: " + totalPlayersBlue);
                     return;
                 case 2:
                     switchIsActive = true;
@@ -47,11 +50,13 @@ public class PressurePlate : MonoBehaviour
         switch (switchType)
         {
             case 1:
-                if (other.gameObject.tag == "Player" && door != null)
+                if (other.gameObject.tag == "Player" && door != null && totalPlayersBlue == 1)
                 {
                     switchIsActive = false;
                     door.SetActive(true);
                 }
+                totalPlayersBlue--;
+                Debug.Log("Blue switch: " + totalPlayersBlue);
                 return;
             case 2:
                 return;
@@ -63,4 +68,18 @@ public class PressurePlate : MonoBehaviour
                 return;
         }
     }
+
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    switch (switchType)
+    //    {
+    //        case 1:
+    //            Debug.Log("It's true dude");
+    //            switchIsActive = true;
+    //            door.SetActive(false);
+    //            return;
+    //        default:
+    //            return;
+    //    }
+    //}
 }
