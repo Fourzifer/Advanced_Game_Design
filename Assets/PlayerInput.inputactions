@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "LeftDash",
+                    "type": "Button",
+                    "id": "8f00305a-9278-4b20-88f3-13a04e7376a4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -77,12 +85,23 @@
                 },
                 {
                     "name": "",
-                    "id": "770592fb-b3bc-4667-af06-ca4ac2b14282",
-                    "path": "<Keyboard>/shift",
+                    "id": "a0dcda96-7d88-4a8b-b682-5a5e5b9dab67",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MoveDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "214b3746-ce62-4d58-8c06-e259ce49048c",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftDash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -115,6 +134,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "LeftDash",
+                    "type": "Button",
+                    "id": "a30cc9dd-ad46-49d4-831c-826bdbb6d3f4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -143,11 +170,22 @@
                 {
                     "name": "",
                     "id": "36b27552-dcfe-4cc0-a2b8-42fe3f293121",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MoveDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "21f18d86-7992-4659-bfed-7e5bcdb08090",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftDash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
