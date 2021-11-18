@@ -2,7 +2,7 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "Player1",
             "id": "61ee707e-ba60-4f7a-9e69-75fd275fd930",
             "actions": [
                 {
@@ -31,17 +31,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "1adacafe-002c-4346-a77f-19b0c40cce43",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "12d73d26-dcf7-4ba6-9113-7555a21c204c",
@@ -77,17 +66,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7303008f-d9cb-4c3b-b5ed-149a217d7137",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "98953304-f9f7-4926-9258-ff80ce9fbe0c",
                     "path": "<Keyboard>/w",
                     "interactions": "",
@@ -99,19 +77,73 @@
                 },
                 {
                     "name": "",
-                    "id": "6d57813e-98ce-49d3-a22c-f481fcb9f997",
-                    "path": "<Gamepad>/dpad/down",
+                    "id": "770592fb-b3bc-4667-af06-ca4ac2b14282",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MoveDown",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player2",
+            "id": "018aa06f-51c0-47e2-af66-864b1c4880de",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "749bd645-445f-4ede-bbcf-94908d82367f",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveUp",
+                    "type": "Button",
+                    "id": "39c26ec7-899e-431a-ac79-fc59e72d6c1a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MoveDown",
+                    "type": "Button",
+                    "id": "8af436b5-d497-4e4d-b76f-9b72ba4d62d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2db00b36-52da-4989-8087-79e0c3dfa79b",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "770592fb-b3bc-4667-af06-ca4ac2b14282",
-                    "path": "<Keyboard>/s",
+                    "id": "cf52b673-2003-4286-81c2-2efc2210c5f2",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36b27552-dcfe-4cc0-a2b8-42fe3f293121",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
