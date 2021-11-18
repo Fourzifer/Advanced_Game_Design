@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float WallClimbForce;
     public float Runspeed;
 
-    public bool HaveWallClimb = false;
-    public bool HaveDash = false;
+    public bool HaveWallClimb;
+    public bool HaveDash;
 
     bool DashPressed;
     bool LeftDashPressed;
@@ -23,10 +23,12 @@ public class PlayerMovement : MonoBehaviour
     bool MoveRight;
 
     bool isGrounded;
+    public LayerMask groundMask;
+    public float groundDistance = 0.4f;
 
     bool OnWall;
 
-    
+
 
     [SerializeField]
     Transform groundCheck;
@@ -50,20 +52,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")))
-        {
+        //if (Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")))
+        //{
 
-            isGrounded = true;
+        //    isGrounded = true;
 
 
-        }
-        else
-        {
+        //}
+        //else
+        //{
 
-            isGrounded = false;
+        //    isGrounded = false;
 
-        }
+        //}
 
         // to not make the player be able to jump in the air
         if (isJumpPressed == true && isGrounded == false)
@@ -174,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
         if (OnWall && HaveWallClimb == true)
         {
 
-            rb.mass = 0.1f;
+            rb.mass = 1f;
             rb.velocity = new Vector3(rb.velocity.x, WallClimbForce, 0);
             Debug.Log("Wall Climb");
             isJumpPressed = true;
@@ -189,6 +192,15 @@ public class PlayerMovement : MonoBehaviour
     {
         DashPressed = true;
         Dash();
+        Debug.Log("Dashed right");
+
+    }
+
+    void OnLeftDash()
+    {
+        LeftDashPressed = true;
+        Dash();
+        Debug.Log("Dashed left");
 
     }
 
@@ -218,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             StopCoroutine(DashDuration());
-            Physics.IgnoreLayerCollision(3, 6,false);
+            //Physics.IgnoreLayerCollision(3, 6,false);
 
         }
 
@@ -227,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             StopCoroutine(LeftDashDuration());
-            Physics.IgnoreLayerCollision(3, 6, false);
+            //Physics.IgnoreLayerCollision(3, 6, false);
 
         }
 
@@ -238,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Right Dash");
         yield return new WaitForSeconds(0.1f);
-        Physics.IgnoreLayerCollision(3, 6);
+        //Physics.IgnoreLayerCollision(3, 6);
         rb.velocity = new Vector3(12, rb.velocity.y, 0);
         DashPressed = false;
         yield break;
@@ -250,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Left Dash");
         yield return new WaitForSeconds(0.1f);
-        Physics.IgnoreLayerCollision(3, 6);
+        //Physics.IgnoreLayerCollision(3, 6);
         rb.velocity = new Vector3(-12, rb.velocity.y, 0);
         LeftDashPressed = false;
         yield break;
