@@ -47,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Move();
+        Gizmos.DrawLine(transform.position, LWallCheck.position);
+        Gizmos.DrawLine(transform.position, RWallCheck.position);
+
     }
 
 
@@ -86,18 +89,10 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
-        else
-        {
-
-            OnWall = false;
-
-        }
-
-        if (Physics.Linecast(transform.position, RWallCheck.position, 1 << LayerMask.NameToLayer("Wall")))
+        else if (Physics.Linecast(transform.position, RWallCheck.position, 1 << LayerMask.NameToLayer("Wall")))
         {
 
             OnWall = true;
-
 
         }
         else
