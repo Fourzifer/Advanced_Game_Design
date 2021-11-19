@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector2 i_movement;
-    float moveSpeed = 10f;
+    float moveSpeed = 10f; //use 40f if using the rb movement
     public Rigidbody rb;
     bool isJumpPressed;
     public float jumpForce;
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool HaveWallClimb;
     public bool HaveDash;
+    public bool HaveJump;
 
     bool DashPressed;
     bool LeftDashPressed;
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         //}
 
         // to not make the player be able to jump in the air
-        if (isJumpPressed == true && isGrounded == false)
+        if (isJumpPressed && HaveJump && !isGrounded)
         {
 
             isJumpPressed = false;
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if(OnWall == false)
+        if(!OnWall)
         {
 
 
@@ -136,14 +137,15 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-     void Move()
+    void Move()
     {
+        //Vector3 movement = new Vector3(i_movement.x, 0, 0) * moveSpeed * Time.deltaTime;
+        //rb.MovePosition(rb.position + movement * Time.deltaTime * moveSpeed);
         Vector2 movement = new Vector2(i_movement.x, 0) * moveSpeed * Time.deltaTime;
         transform.Translate(movement);
-        //rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
     }
 
-     void OnMove(InputValue value)
+    void OnMove(InputValue value)
     {
         
         i_movement = value.Get<Vector2>();
@@ -155,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
      void OnMoveUp()
     {
 
-        if (isGrounded)
+        if (isGrounded && HaveJump)
         {
 
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, 0);
@@ -166,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        if (OnWall && HaveWallClimb == true)
+        if (OnWall && HaveWallClimb)
         {
 
             rb.mass = 1f;
@@ -200,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
     void Dash()
     {
 
-        if(DashPressed == true && HaveDash == true)
+        if(DashPressed && HaveDash)
         {
 
             StartCoroutine(DashDuration());
@@ -209,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (LeftDashPressed == true && HaveDash == true)
+        if (LeftDashPressed && HaveDash)
         {
 
             StartCoroutine(LeftDashDuration());
@@ -218,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (DashPressed == false)
+        if (!DashPressed)
         {
 
             StopCoroutine(DashDuration());
@@ -227,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (LeftDashPressed == true)
+        if (LeftDashPressed)
         {
 
             StopCoroutine(LeftDashDuration());

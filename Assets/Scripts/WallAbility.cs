@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashAbility : MonoBehaviour
+public class WallAbility : MonoBehaviour
 {
-    public PlayerMovement player;
-
-    public Rigidbody rb;
-
-
+    public PlayerMovement player1;
+    public PlayerMovement player2;
 
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Has Dash");
+            Debug.Log("Has Wall Climb");
             Pickup(other.gameObject.GetComponent<PlayerMovement>());
-
+            
         }
 
 
@@ -32,13 +29,15 @@ public class DashAbility : MonoBehaviour
     void Pickup(PlayerMovement player)
     {
 
-        player.HaveDash = true;
+        player1.HaveWallClimb = true;
+        player2.HaveWallClimb = true;
         Destroy(gameObject);
 
 
 
     }
 
-    
+
+
 
 }
