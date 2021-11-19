@@ -2022,7 +2022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 26807253, guid: abf85a920f9f1a14580bffa1245c6d2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3357225e-14
+      value: 3.381954e-14
       objectReference: {fileID: 0}
     - target: {fileID: 26807253, guid: abf85a920f9f1a14580bffa1245c6d2c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2046,7 +2046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1808183241, guid: abf85a920f9f1a14580bffa1245c6d2c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 9.4e-44
+      value: -2.1e-44
       objectReference: {fileID: 0}
     - target: {fileID: 269047122031645931, guid: abf85a920f9f1a14580bffa1245c6d2c, type: 3}
       propertyPath: m_Follow
@@ -2074,15 +2074,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 269047122900960090, guid: abf85a920f9f1a14580bffa1245c6d2c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1.6755072e-15
+      value: 1.6987041e-15
       objectReference: {fileID: 0}
     - target: {fileID: 269047122900960090, guid: abf85a920f9f1a14580bffa1245c6d2c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 2.8703e-41
+      value: 2.9506e-41
       objectReference: {fileID: 0}
     - target: {fileID: 269047122900960090, guid: abf85a920f9f1a14580bffa1245c6d2c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -1.9418065e-22
+      value: -1.9686899e-22
       objectReference: {fileID: 0}
     - target: {fileID: 269047122900960090, guid: abf85a920f9f1a14580bffa1245c6d2c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2128,7 +2128,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224360764397258866}
-  m_Text: 
+  m_Text: Dash
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
