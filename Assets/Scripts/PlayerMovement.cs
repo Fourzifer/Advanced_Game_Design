@@ -206,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             StartCoroutine(DashDuration());
+            StartCoroutine(PassDuration());
 
 
         }
@@ -215,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             StartCoroutine(LeftDashDuration());
+            StartCoroutine(PassDuration());
 
 
         }
@@ -224,7 +226,6 @@ public class PlayerMovement : MonoBehaviour
         {
 
             StopCoroutine(DashDuration());
-            //Physics.IgnoreLayerCollision(3, 6,false);
 
         }
 
@@ -233,18 +234,28 @@ public class PlayerMovement : MonoBehaviour
         {
 
             StopCoroutine(LeftDashDuration());
-            //Physics.IgnoreLayerCollision(3, 6, false);
+
 
         }
 
     }
 
+    IEnumerator PassDuration()
+    {
+        Debug.Log("Pass through");
+        Physics.IgnoreLayerCollision(7, 10);
+        Physics.IgnoreLayerCollision(8, 10);
+        yield return new WaitForSeconds(0.5f);
+        Physics.IgnoreLayerCollision(7, 10, false);
+        Physics.IgnoreLayerCollision(8, 10, false);
+        yield break;
+
+    }
 
     IEnumerator DashDuration() 
     {
         Debug.Log("Right Dash");
         yield return new WaitForSeconds(0.1f);
-        //Physics.IgnoreLayerCollision(3, 6);
         rb.velocity = new Vector3(12, rb.velocity.y, 0);
         DashPressed = false;
         yield break;
@@ -256,7 +267,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Left Dash");
         yield return new WaitForSeconds(0.1f);
-        //Physics.IgnoreLayerCollision(3, 6);
         rb.velocity = new Vector3(-12, rb.velocity.y, 0);
         LeftDashPressed = false;
         yield break;
