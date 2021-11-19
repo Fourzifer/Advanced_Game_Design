@@ -7,6 +7,8 @@ public class DashAbility : MonoBehaviour
     public PlayerMovement player1;
     public PlayerMovement player2;
 
+    public GameObject Textbox;
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -28,7 +30,7 @@ public class DashAbility : MonoBehaviour
 
     void Pickup(PlayerMovement player)
     {
-
+        Instantiate(Textbox, transform.position, Quaternion.identity);
         player1.HaveDash = true;
         player2.HaveDash = true;
         Destroy(gameObject);
