@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class WallAbility : MonoBehaviour
 {
+    public PlayerMovement player1;
+    public PlayerMovement player2;
 
-    public PlayerMovement player;
-
-    public Rigidbody rb;
-
+    public GameObject Textbox;
 
 
     private void OnTriggerEnter(Collider other)
@@ -32,8 +31,9 @@ public class WallAbility : MonoBehaviour
 
     void Pickup(PlayerMovement player)
     {
-
-        player.HaveWallClimb = true;
+        Instantiate(Textbox, transform.position, Quaternion.identity);
+        player1.HaveWallClimb = true;
+        player2.HaveWallClimb = true;
         Destroy(gameObject);
 
 
